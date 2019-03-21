@@ -1,0 +1,490 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <title>Admin</title>
+
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Lora|Merriweather:300,400" rel="stylesheet">
+
+</head>
+<body>
+    <!--Firebase-->
+    <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyD6PsHwuNQyA-qStS_mWVLf8nSuV2CPovE",
+            authDomain: "game-sky.firebaseapp.com",
+            databaseURL: "https://game-sky.firebaseio.com",
+            projectId: "game-sky",
+            storageBucket: "game-sky.appspot.com",
+            messagingSenderId: "188318287491"
+        };
+        firebase.initializeApp(config);
+        var database = firebase.database();
+        var userRef = database.ref("Users");
+        var EmpRef = database.ref("Emp");
+        var productsRef = database.ref("Products");
+        var provRef = database.ref("Prov");
+        
+    </script>
+
+    <!-- PRE LOADER -->
+
+    <div class="preloader">
+        <div class="sk-spinner sk-spinner-wordpress">
+            <span class="sk-inner-circle"></span>
+        </div>
+    </div>
+
+    <!-- Navigation section  -->
+
+    <div class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="container">
+
+            <div class="navbar-header">
+                <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon icon-bar"></span>
+                    <span class="icon icon-bar"></span>
+                    <span class="icon icon-bar"></span>
+                </button>
+                <a href="index.html" class="navbar-brand">Games' Sky by Breaker Studios</a>
+                <img src="images/imglogo.jpg" width="144" height="100" />
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="about.html">Sobre nosotros</a></li>
+                    <li>
+                        <a href="Offers.html">Ofertas y productos</a>
+                    </li>
+                    <li class="active"><a href="LogIn.html">Log In</a></li>
+                    <li><a href="contact.html">Contacto</a></li>
+
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+    <section id="blog-single-post">
+
+        <div class="container">
+            <h2>Admin Profile</h2>
+            <img src="images/admin.png" width="144" height="130" />
+            <br />
+            <br />
+            <button onclick="Index()" type="button" class="btn btn-outline-dark">Regresar al inicio</button>
+            <button onclick="BackLog()" type="button" class="btn btn-outline-dark">Ir a LogIn</button>
+            <button onclick="LogOut()" type="button" class="btn btn-outline-dark">Cerrar sesión</button>
+            <br />
+            <br />
+            <div class="row">
+
+                <div class="col-md-offset-1 col-md-10 col-sm-12">
+                    <div class="blog-single-post-thumb">
+
+
+                        <div class="blog-post-title">
+                        </div>
+                        <h3>Empleados</h3>
+                        <br />
+                        <table id="table" class="table table-hover table-dark">
+                            <thead>
+                                <tr id="Datos">
+                                    <th scope="col">#</th>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Dirección</th>
+                                    <th scope="col">Tel</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Sexo</th>
+                                    <th scope="col">Nacimiento</th>
+                                    <th scope="col">Turno</th>
+                                    <th scope="col">Sueldo</th>
+                                    <th scope="col">Fecha de ingreso</th>
+                                </tr>
+                            </thead>
+                            <tbody id="Rows">
+                                <tr></tr>
+                                <tr></tr>
+                                <tr></tr>
+                            </tbody>
+                        </table>
+                        <br />
+                        <br>
+                        <h3>Agregar empleados</h3>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Nombre</span>
+                            </div>
+                            <input type="text" class="form-control" id="Name" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                        </div>
+                        <br />
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Dirección</span>
+                            </div>
+                            <input type="text" class="form-control" id="Dir" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                        </div>
+                        <br />
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Teléfono</span>
+                            </div>
+                            <input type="text" class="form-control" id="Tel" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                        </div>
+                        <br />
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Email</span>
+                            </div>
+                            <input type="text" class="form-control" id="Mail" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                        </div>
+                        <br />
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Sexo</span>
+                            </div>
+                            <input type="text" class="form-control" id="Sex" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                        </div>
+                        <br />
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Nacimiento</span>
+                            </div>
+                            <input type="text" class="form-control" id="Born" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                        </div>
+                        <br />
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Turno</span>
+                            </div>
+                            <input type="text" class="form-control" id="Turn" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                        </div>
+                        <br />
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Sueldo</span>
+                            </div>
+                            <input type="text" class="form-control" id="Salary" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                        </div>
+                        <br />
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Fecha de ingreso</span>
+                            </div>
+                            <input type="text" class="form-control" id="startDate" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                        </div>
+                        <br />
+                        <button onclick="AddEmp()" type="button" class="btn btn-outline-success">Agregar a la base de datos</button>
+                        <br />
+                        <br />
+                        <h3>Usuarios</h3>
+                        <table id="userTable" class="table table-hover table-dark">
+                            <thead>
+                                <tr id="Datos">
+                                    <th scope="col">#</th>
+                                    <th scope="col">Usuarios</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Contraseña</th>
+                                </tr>
+                            </thead>
+                            <tbody id="Rows">
+                                <tr></tr>
+                                <tr></tr>
+                                <tr></tr>
+                            </tbody>
+                        </table>
+                        <br />
+                        <br />
+                        <h3>Productos</h3>
+                        <table id="prodTable" class="table table-hover table-dark">
+                            <thead>
+                                <tr id="Datos">
+                                    <th scope="col">#</th>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Marca</th>
+                                    <th scope="col">Descripción</th>
+                                    <th scope="col">Existencias</th>
+                                    <th scope="col">Precio de mayoreo</th>
+                                    <th scope="col">Precio de menudeo</th>
+                                    <th scope="col">Tipo de producto</th>
+                                </tr>
+                            </thead>
+                            <tbody id="Rows">
+                                <tr></tr>
+                                <tr></tr>
+                                <tr></tr>
+                            </tbody>
+                        </table>
+                        <br />
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Nombre</span>
+                            </div>
+                            <input type="text" class="form-control" id="_Name" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                        </div>
+                        <br />
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Marca</span>
+                            </div>
+                            <input type="text" class="form-control" id="Brand" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                        </div>
+                        <br />
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Descripción</span>
+                            </div>
+                            <input type="text" class="form-control" id="Desc" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                        </div>
+                        <br />
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Existencias</span>
+                            </div>
+                            <input type="text" class="form-control" id="Exist" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                        </div>
+                        <br />
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Precio de mayoreo</span>
+                            </div>
+                            <input type="text" class="form-control" id="pM" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                        </div>
+                        <br />
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Precio de menudeo</span>
+                            </div>
+                            <input type="text" class="form-control" id="pm" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                        </div>
+                        <br />
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Tipo de producto</span>
+                            </div>
+                            <input type="text" class="form-control" id="Type" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                        </div>
+                        <br />
+                        <button onclick="AddProd()" type="button" class="btn btn-outline-success">Agregar a la base de datos</button>
+                    </div>
+                </div>
+
+            </div>
+    </section>
+
+    <!--Programming section-->
+    <script>
+        var table = document.getElementById("table");
+        function Index() {
+            window.location = "index.html";
+        }
+        function BackLog() {
+            alert("Sesión cerrada al redireccionar");
+            sessionStorage.clear();
+            window.location = "LogIn.html";
+        }
+            //If the admin calls the specified table
+            var opt = document.getElementById("inputGroupSelect01");
+                EmpRef.on("value", gotData0, errData);
+                //provRef.on("value", gotData2, errData);
+                userRef.on("value", gotData3, errData);
+                productsRef.on("value", gotData4, errData);
+        function LogOut() {
+            alert("Sesión cerrada");
+            sessionStorage.clear();
+            window.location = "index.html";
+        }
+        var name, dir, tel, mail, sex, nac, turn, salary, startDate;
+        function gotData0(data) {
+            //Nombre	Dirección	Tel	Email	Sexo	Nacimiento	Turno	Sueldo	Fecha de ingreso
+            //console.log(data.val());
+            var set = data.val();
+            var keys = Object.keys(set);
+            
+            for (var i = 0; i < keys.length; i++) {
+                var k = keys[i];
+                name = set[k].name;
+                dir = set[k].dir;
+                tel = set[k].tel;
+                mail = set[k].mail;
+                sex = set[k].sex;
+                nac = set[k].nac;
+                turn = set[k].turn;
+                salary = set[k].salary;
+                startDate = set[k].startDate;
+                var newRow = table.insertRow(table.length);
+                var newCell = newRow.insertCell(0);
+                var newCell2 = newRow.insertCell(1);
+                var newCell3 = newRow.insertCell(2);
+                var newCell4 = newRow.insertCell(3);
+                var newCell5 = newRow.insertCell(4);
+                var newCell6 = newRow.insertCell(5);
+                var newCell7 = newRow.insertCell(6);
+                var newCell8 = newRow.insertCell(7);
+                var newCell9 = newRow.insertCell(8);
+                var newCell0 = newRow.insertCell(9);
+                newCell.innerHTML = k;
+                newCell2.innerHTML = name;
+                newCell3.innerHTML = dir;
+                newCell4.innerHTML = tel;
+                newCell5.innerHTML = mail;
+                newCell6.innerHTML = sex;
+                newCell7.innerHTML = nac;
+                newCell8.innerHTML = turn;
+                newCell9.innerHTML = salary;
+                newCell0.innerHTML = startDate;
+            }
+        }
+        function gotData4(data) {
+            var set = data.val();
+            var table3 = document.getElementById("prodTable");
+            console.log(set);
+            var keys = Object.keys(set);
+
+            for (var i = 0; i < keys.length; i++) {
+                var k = keys[i];
+                var _name = set[k]._name;
+                var brand = set[k].brand;
+                var desc = set[k].desc;
+                var exist = set[k].exist;
+                var pM = set[k].pM;
+                var pm = set[k].pm;
+                var type = set[k].type;
+                var newRow = table3.insertRow(table3.length);
+                var newCell = newRow.insertCell(0);
+                var newCell2 = newRow.insertCell(1);
+                var newCell3 = newRow.insertCell(2);
+                var newCell4 = newRow.insertCell(3);
+                var newCell5 = newRow.insertCell(4);
+                var newCell6 = newRow.insertCell(5);
+                var newCell7 = newRow.insertCell(6);
+                var newCell8 = newRow.insertCell(7);
+                newCell.innerHTML = k;
+                newCell2.innerHTML = _name;
+                newCell3.innerHTML = brand;
+                newCell4.innerHTML = desc;
+                newCell5.innerHTML = exist;
+                newCell6.innerHTML = pM;
+                newCell7.innerHTML = pm;
+                newCell8.innerHTML = type;
+            }
+        }
+        function gotData3(data) {
+            var set = data.val();
+            var table2 = document.getElementById("userTable");
+            console.log(set);
+            var keys = Object.keys(set);
+
+            for (var i = 0; i < keys.length; i++) {
+                var k = keys[i];
+                var userName = set[k].User;
+                var mail = set[k].Mail;
+                var pass = set[k].Pass;
+                var newRow = table2.insertRow(table2.length);
+                var newCell = newRow.insertCell(0);
+                var newCell2 = newRow.insertCell(1);
+                var newCell3 = newRow.insertCell(2);
+                var newCell4 = newRow.insertCell(3);
+                newCell.innerHTML = k;
+                newCell2.innerHTML = userName;
+                newCell3.innerHTML = mail;
+                newCell4.innerHTML = pass;
+            }
+        }
+        function AddEmp() {
+            var data = {
+                name: document.getElementById("Name").value,
+                dir: document.getElementById("Dir").value,
+                tel: document.getElementById("Tel").value,
+                mail: document.getElementById("Mail").value,
+                sex: document.getElementById("Sex").value,
+                nac: document.getElementById("Born").value,
+                turn: document.getElementById("Turn").value,
+                salary: document.getElementById("Salary").value,
+                startDate: document.getElementById("startDate").value
+            }
+            console.log(data);
+            EmpRef.push(data);
+        }
+        function AddProd() {
+            var data = {
+                _name: document.getElementById("_Name").value,
+                brand: document.getElementById("Brand").value,
+                desc: document.getElementById("Desc").value,
+                exist: document.getElementById("Exist").value,
+                pM: document.getElementById("pM").value,
+                pm: document.getElementById("pm").value,
+                type: document.getElementById("Type").value,
+            }
+            console.log(data);
+            productsRef.push(data);
+        }
+        function errData() {
+
+        }
+    </script>
+    <!-- Footer Section -->
+
+    <footer>
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-5 col-md-offset-1 col-sm-6">
+                    <h3>Breaker Studios</h3>
+                    <div class="footer-copyright">
+                        <p>Copyright &copy; 2019 Breaker Studios</p>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-md-offset-1 col-sm-6">
+                    <h3>Contacto</h3>
+                    <p><i class="fa fa-globe"></i> Lomas del campestre, Aguascalientes, Ags.</p>
+                    <p><i class="fa fa-phone"></i> 449-228-49-91</p>
+                    <p><i class="fa fa-save"></i> nefesmeralda@gmail.com</p>
+                </div>
+
+                <div class="clearfix col-md-12 col-sm-12">
+                    <hr>
+                </div>
+
+                <div class="col-md-12 col-sm-12">
+                    <ul class="social-icon">
+                        <li><a href="http://www.facebook.com" class="fa fa-facebook"></a></li>
+                        <li><a href="http://www.twitter.com" class="fa fa-twitter"></a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Back top -->
+    <a href="#back-top" class="go-top"><i class="fa fa-angle-up"></i></a>
+
+    <!-- SCRIPTS -->
+
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.parallax.js"></script>
+    <script src="js/custom.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+    <script src="CookieManager.js"></script>
+
+</body>
+</html>

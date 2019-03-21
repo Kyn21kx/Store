@@ -1,0 +1,205 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <title>Admin</title>
+
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Lora|Merriweather:300,400" rel="stylesheet">
+
+</head>
+<body>
+    <!--Firebase-->
+    <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyD6PsHwuNQyA-qStS_mWVLf8nSuV2CPovE",
+            authDomain: "game-sky.firebaseapp.com",
+            databaseURL: "https://game-sky.firebaseio.com",
+            projectId: "game-sky",
+            storageBucket: "game-sky.appspot.com",
+            messagingSenderId: "188318287491"
+        };
+        firebase.initializeApp(config);
+    </script>
+
+    <!-- PRE LOADER -->
+
+    <div class="preloader">
+        <div class="sk-spinner sk-spinner-wordpress">
+            <span class="sk-inner-circle"></span>
+        </div>
+    </div>
+
+    <!-- Navigation section  -->
+
+    <div class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="container">
+
+            <div class="navbar-header">
+                <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon icon-bar"></span>
+                    <span class="icon icon-bar"></span>
+                    <span class="icon icon-bar"></span>
+                </button>
+                <a href="index.html" class="navbar-brand">Games' Sky by Breaker Studios</a>
+                <img src="images/imglogo.jpg" width="144" height="100" />
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="about.html">Sobre nosotros</a></li>
+                    <li class="active">
+                        <a href="Offers.html">Ofertas y productos</a>
+                    </li>
+                    <li><a href="LogIn.html">Log In</a></li>
+                    <li><a href="contact.html">Contacto</a></li>
+
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+    <section id="blog-single-post">
+
+        <div class="container">
+            <h2 id="gameName"></h2>
+            <img id="gameImg" width="805" height="452" />
+            <br />
+            <br />
+            <h2 id="Price"></h2>
+            <script>
+                var logged = sessionStorage.getItem("Logged");
+                var currentGame = sessionStorage.getItem("game");
+                var price = sessionStorage.getItem("price");
+                var img = document.getElementById("gameImg");
+                if (logged) {
+                    document.getElementById("Price").innerText = "(Descuento aplicado) Precio: $" + (price * 0.8);
+                }
+                else {
+                    document.getElementById("Price").innerText = "Precio: $" + price;
+                }
+                document.getElementById("gameName").innerText = currentGame;
+                
+                if (currentGame == "Witcher") {
+                    img.src = "images/WitcherP.png";
+                }
+                if (currentGame == "DMC5") {
+                    img.src = "images/DMC5Banner.jpg";
+                }
+                if (currentGame == "Bioshock") {
+                    img.src = "images/BioshockInf.jpg";
+                }
+                if (currentGame == "RE2") {
+                    img.src = "images/RE2.png";
+                }
+                if (currentGame == "GOW") {
+                    img.src = "images/GOW.jpg";
+                }
+                if (currentGame == "AC") {
+                    img.src = "images/ACOd.jpg"
+                }
+                if (currentGame == "Nier") {
+                    img.src = "images/NiEr.jpg";
+                }
+                if (currentGame == "TLOU") {
+                    img.src = "images/TLOU.png";
+                }
+            </script>
+            <button onclick="Purchase()" type="button" class="btn btn-outline-dark">Comprar ahora</button>
+            <a href="Offers.html"><button type="button" class="btn btn-outline-dark">Regresar a ofertas</button></a>
+            <br />
+            <br />
+            <script>
+
+                function Purchase() {
+                    window.location = "Transaction.html";
+                }
+
+            </script>
+</section>
+
+    <!--Programming section-->
+    <script>
+        var table = document.getElementsByClassName("table table-hover table-dark");;
+
+        function Index() {
+            window.location = "index.html";
+        }
+        function BackLog() {
+            alert("Sesión cerrada al redireccionar");
+            sessionStorage.clear();
+            window.location = "LogIn.html";
+        }
+        function Show() {
+
+        }
+        function LogOut() {
+            alert("Sesión cerrada");
+            sessionStorage.clear();
+            window.location = "index.html";
+        }
+    </script>
+    <!-- Footer Section -->
+
+    <footer>
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-5 col-md-offset-1 col-sm-6">
+                    <h3>Breaker Studios</h3>
+                    <div class="footer-copyright">
+                        <p>Copyright &copy; 2019 Breaker Studios</p>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-md-offset-1 col-sm-6">
+                    <h3>Contacto</h3>
+                    <p><i class="fa fa-globe"></i> Lomas del campestre, Aguascalientes, Ags.</p>
+                    <p><i class="fa fa-phone"></i> 449-228-49-91</p>
+                    <p><i class="fa fa-save"></i> nefesmeralda@gmail.com</p>
+                </div>
+
+                <div class="clearfix col-md-12 col-sm-12">
+                    <hr>
+                </div>
+
+                <div class="col-md-12 col-sm-12">
+                    <ul class="social-icon">
+                        <li><a href="http://www.facebook.com" class="fa fa-facebook"></a></li>
+                        <li><a href="http://www.twitter.com" class="fa fa-twitter"></a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Back top -->
+    <a href="#back-top" class="go-top"><i class="fa fa-angle-up"></i></a>
+
+    <!-- SCRIPTS -->
+
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.parallax.js"></script>
+    <script src="js/custom.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="CookieManager.js"></script>
+
+</body>
+</html>
