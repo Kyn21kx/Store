@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 
@@ -119,6 +119,7 @@
                     img.src = "images/TLOU.png";
                 }
             </script>
+            <button type="button" onclick="AddProduct()" class="btn btn-outline-dark">Agregar al carrito</button>
             <button onclick="Purchase()" type="button" class="btn btn-outline-dark">Comprar ahora</button>
             <a href="Offers.html"><button type="button" class="btn btn-outline-dark">Regresar a ofertas</button></a>
             <br />
@@ -135,7 +136,7 @@
     <!--Programming section-->
     <script>
         var table = document.getElementsByClassName("table table-hover table-dark");;
-
+        
         function Index() {
             window.location = "index.html";
         }
@@ -151,6 +152,14 @@
             alert("Sesión cerrada");
             sessionStorage.clear();
             window.location = "index.html";
+        }
+        function AddProduct () {
+            var p = new Array();
+            p.push(sessionStorage.getItem("Productos"));
+            p.push(currentGame);
+            p.push(price)
+            sessionStorage.setItem("Productos", p);
+            alert("Added to the cart");
         }
     </script>
     <!-- Footer Section -->
