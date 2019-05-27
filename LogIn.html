@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 
@@ -133,19 +133,27 @@
         function gotData(data) {
             var pass = data.val();
             var keys = Object.keys(pass);
-
+            var finalUser = null;
+            var finalPass = null;
             for (var i = 0; i < keys.length; i++) {
                 var k = keys[i];
                 var logUser = pass[k].User;
                 var logPass = pass[k].Pass;
                 if (userHolder.value == logUser && passHolder.value == logPass) {
-                    window.location = "Offers.html";
-                    sessionStorage.setItem("Logged", "true");
-                    sessionStorage.setItem("User", userHolder.value);
-                    
+                    finalUser = logUser;
+                    finalPass = logPass;
+                    break;
                 }
-                
             }
+            if (finalPass != null && finalUser != null) {
+                window.location = "Offers.html";
+                sessionStorage.setItem("Logged", "true");
+                sessionStorage.setItem("User", userHolder.value);
+            }
+            else {
+                alert("Invlaid User or Password");
+            }
+            
         }
         function errData() {
 
